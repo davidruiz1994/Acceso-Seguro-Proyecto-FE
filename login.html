@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Acceso de usuarios</title>
+  <style>
+    body { font-family: Arial; background-color: #eef2f7; text-align: center; padding-top: 80px; }
+    select, input, button { margin: 10px; padding: 10px; font-size: 16px; }
+    .box { background-color: white; padding: 40px; border-radius: 8px; display: inline-block; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>Acceso seguro</h2>
+
+    <!-- Lista desplegable de usuarios -->
+    <select id="usuario">
+      <option value="">Selecciona tu nombre</option>
+      <option value="angel">Angel Rafael Montilla</option>
+      <option value="rosangela">Rosangela Cuero</option>
+    </select><br>
+
+    <!-- Campo para contraseña -->
+    <input type="password" id="clave" placeholder="Contraseña"><br>
+
+    <button onclick="verificar()">Ingresar</button>
+    <p id="mensaje" style="color:red;"></p>
+  </div>
+
+  <script>
+    function verificar() {
+      const usuario = document.getElementById("usuario").value;
+      const clave = document.getElementById("clave").value;
+
+      // Diccionario de usuarios y contraseñas
+      const credenciales = {
+        "angel": { pass: "12277960", link: "https://docs.google.com/forms/d/1krrNz3MP3-J7RzrPRznX9A5vdFNsXrzXBSjqDqJ8nig/edit" },
+        "rosangela": { pass: "28227753", link: "https://www.tu-enlace-rosangela.com" }
+      };
+
+      if (usuario && credenciales[usuario]) {
+        if (clave === credenciales[usuario].pass) {
+          window.location.href = credenciales[usuario].link;
+        } else {
+          document.getElementById("mensaje").textContent = "Contraseña incorrecta.";
+        }
+      } else {
+        document.getElementById("mensaje").textContent = "Por favor selecciona un usuario.";
+      }
+    }
+  </script>
+</body>
+</html>
